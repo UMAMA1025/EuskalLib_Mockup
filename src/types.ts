@@ -1,6 +1,6 @@
 import React from 'react';
 
-export type Screen = 'home' | 'catalog' | 'detail' | 'login' | 'profile' | 'dashboard';
+export type Screen = 'home' | 'catalog' | 'detail' | 'login' | 'profile' | 'dashboard' | 'librarian-dashboard';
 
 export interface Book {
   id: string;

@@ -194,6 +194,7 @@ export default function Profile({ onNavigate, onLogout }: ProfileProps) {
               <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,#fff_0%,transparent_70%)]"></div>
             </div>
             <div className="absolute top-0 right-0 w-96 h-96 bg-accent/10 rounded-full -mr-32 -mt-32 blur-3xl"></div>
+            <div className="absolute top-0 left-0 w-full h-1 bg-basque-red"></div>
             
             <div className="relative h-full flex flex-col justify-between">
               <div className="flex justify-between items-start">
@@ -203,14 +204,14 @@ export default function Profile({ onNavigate, onLogout }: ProfileProps) {
                   </div>
                   <div className="flex flex-col">
                     <span className="text-white font-serif font-bold text-xl">EuskalLib</span>
-                    <span className="text-[8px] text-white/40 font-bold uppercase tracking-widest">Red de Bibliotecas</span>
+                    <span className="text-[8px] text-white/40 font-bold uppercase tracking-widest">Eusko Jaurlaritza • Gobierno Vasco</span>
                   </div>
                 </div>
                 <Shield className="text-white/10 size-12" />
               </div>
               
               <div className="space-y-1">
-                <p className="text-white/30 text-[9px] uppercase tracking-widest font-bold">Titular del Carné</p>
+                <p className="text-white/30 text-[9px] uppercase tracking-widest font-bold">Titular del Carné / Titularra</p>
                 <h4 className="text-white text-3xl font-serif font-bold tracking-tight uppercase">JON DOE</h4>
               </div>
               
@@ -219,7 +220,7 @@ export default function Profile({ onNavigate, onLogout }: ProfileProps) {
                   <QrCode className="size-16 text-primary" />
                 </div>
                 <div className="text-right">
-                  <p className="text-white/30 text-[9px] uppercase tracking-widest font-bold mb-1">ID Unificado</p>
+                  <p className="text-white/30 text-[9px] uppercase tracking-widest font-bold mb-1">ID Unificado / Identifikazioa</p>
                   <p className="text-white font-mono text-xl font-bold tracking-widest">EL 9832 1000</p>
                 </div>
               </div>

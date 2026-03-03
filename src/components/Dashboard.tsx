@@ -24,25 +24,25 @@ export default function Dashboard({ onNavigate }: DashboardProps) {
         <div className="max-w-xl">
           <div className="flex items-center gap-3 mb-6">
             <div className="h-px w-8 bg-basque-red"></div>
-            <span className="small-caps text-accent">Panel de Control Institucional</span>
+            <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-accent">Kudeaketa Sistema Zentralizatua</span>
           </div>
-          <h2 className="text-5xl font-serif font-bold text-primary tracking-tight leading-none">Análisis de <br /> <span className="italic font-medium text-basque-red">Actividad.</span></h2>
-          <p className="text-muted mt-6 text-lg font-light leading-relaxed">Monitorización en tiempo real de los flujos culturales y bibliográficos de la Red de Euskadi.</p>
+          <h2 className="text-5xl font-serif font-bold text-primary tracking-tight leading-none">Panel de <br /> <span className="italic font-medium text-basque-red">Administración.</span></h2>
+          <p className="text-muted mt-6 text-lg font-light leading-relaxed">Monitorización de la Red de Lectura Pública de Euskadi. Datos consolidados en tiempo real.</p>
         </div>
         
         <div className="flex items-center gap-4">
           <button className="btn-premium btn-outline py-3 px-6">
             <Download className="size-4" />
-            Exportar Reporte
+            Descargar Informe
           </button>
           <button className="btn-premium btn-primary py-3 px-6">
             <Calendar className="size-4" />
-            Últimos 30 días
+            Periodo Actual
           </button>
         </div>
       </div>
 
-      {/* Stats Grid - Hardware/Specialist Feel */}
+      {/* Stats Grid - Institutional Feel */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
         {[
           { label: 'Usuarios Activos', value: '12,842', change: '+12%', trend: 'up', icon: Users },
@@ -55,25 +55,21 @@ export default function Dashboard({ onNavigate }: DashboardProps) {
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: i * 0.1 }}
-            className="bg-primary rounded-3xl p-8 text-white relative overflow-hidden group"
+            className="bg-white rounded-3xl p-8 border border-line shadow-sm relative overflow-hidden group hover:border-primary/20 transition-all"
           >
-            <div className="absolute top-0 right-0 w-16 h-px bg-basque-red"></div>
+            <div className="absolute top-0 left-0 w-full h-1 bg-slate-50 group-hover:bg-primary transition-colors"></div>
             <div className="relative z-10">
               <div className="flex justify-between items-start mb-8">
-                <div className="size-12 rounded-xl bg-white/10 flex items-center justify-center text-white/60 group-hover:text-accent transition-colors">
+                <div className="size-12 rounded-xl bg-slate-50 flex items-center justify-center text-muted group-hover:text-primary transition-colors">
                   <stat.icon className="size-6" />
                 </div>
-                <div className={`flex items-center gap-1 text-[10px] font-bold uppercase tracking-widest ${stat.trend === 'up' ? 'text-accent' : 'text-red-400'}`}>
+                <div className={`flex items-center gap-1 text-[10px] font-bold uppercase tracking-widest ${stat.trend === 'up' ? 'text-accent' : 'text-red-500'}`}>
                   {stat.trend === 'up' ? <ArrowUpRight className="size-3" /> : <ArrowDownRight className="size-3" />}
                   {stat.change}
                 </div>
               </div>
-              <p className="small-caps text-white/40 mb-2">{stat.label}</p>
-              <h3 className="text-4xl font-serif font-bold tracking-tight">{stat.value}</h3>
-            </div>
-            {/* Decorative Grid Background */}
-            <div className="absolute inset-0 opacity-5 pointer-events-none">
-              <div className="w-full h-full bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+              <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-muted mb-2">{stat.label}</p>
+              <h3 className="text-4xl font-serif font-bold tracking-tight text-primary">{stat.value}</h3>
             </div>
           </motion.div>
         ))}

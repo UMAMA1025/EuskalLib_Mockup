@@ -38,13 +38,13 @@ export default function Home({ onNavigate }: HomeProps) {
             className="max-w-3xl"
           >
             <div className="inline-flex items-center gap-3 mb-8">
-              <div className="h-px w-12 bg-accent"></div>
-              <span className="small-caps text-white/60">Patrimonio Digital de Euskadi</span>
+              <div className="h-px w-12 bg-basque-red"></div>
+              <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-white/60">Eusko Jaurlaritzaren Liburutegi Sarea</span>
             </div>
             
             <h1 className="text-6xl md:text-8xl lg:text-[7vw] font-serif italic text-white mb-8 leading-[0.9] tracking-tight">
-              El saber <br /> 
-              <span className="text-accent not-italic font-sans font-bold uppercase tracking-tighter">Unificado.</span>
+              Kultura <br /> 
+              <span className="text-accent not-italic font-sans font-bold uppercase tracking-tighter">Guztientzat.</span>
             </h1>
             
             <p className="text-white/70 text-lg md:text-xl max-w-xl mb-12 font-light leading-relaxed">
@@ -79,7 +79,7 @@ export default function Home({ onNavigate }: HomeProps) {
       <section className="max-w-7xl mx-auto px-6 lg:px-12 py-32">
         <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
           <div className="max-w-xl">
-            <span className="small-caps text-accent mb-4 block">Colecciones Destacadas</span>
+            <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-accent mb-4 block">Erakusketa Digitala</span>
             <h2 className="text-5xl font-serif font-bold text-primary leading-tight">
               Descubra el patrimonio <br /> <span className="italic font-medium text-basque-red">de nuestra tierra.</span>
             </h2>

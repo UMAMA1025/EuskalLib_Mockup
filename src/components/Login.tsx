@@ -64,24 +64,26 @@ export default function Login({ onNavigate }: LoginProps) {
           animate={{ opacity: 1, y: 0 }}
           className="w-full max-w-md"
         >
-          {/* Mobile Logo */}
           <div className="lg:hidden mb-12">
             <div className="flex items-center gap-4">
               <div className="bg-primary p-2.5 rounded-xl relative overflow-hidden">
                 <div className="absolute top-0 left-0 w-full h-0.5 bg-basque-red"></div>
                 <Library className="text-white size-6" />
               </div>
-              <span className="text-2xl font-bold tracking-tighter text-primary">EuskalLib</span>
+              <div className="flex flex-col">
+                <span className="text-2xl font-bold tracking-tighter text-primary leading-none">EuskalLib</span>
+                <span className="text-[8px] font-bold uppercase tracking-widest text-accent">Eusko Jaurlaritza</span>
+              </div>
             </div>
           </div>
 
           <div className="mb-12">
             <div className="flex items-center gap-3 mb-4">
               <div className="h-px w-8 bg-basque-red"></div>
-              <span className="small-caps text-accent">Acceso Unificado</span>
+              <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-accent">Identifikazio Sistema Unifikatua</span>
             </div>
-            <h2 className="text-4xl font-serif font-bold text-primary mb-4">Bienvenido de nuevo</h2>
-            <p className="text-muted font-light">Introduzca sus credenciales institucionales para acceder a la red.</p>
+            <h2 className="text-4xl font-serif font-bold text-primary mb-4">Acceso Institucional</h2>
+            <p className="text-muted font-light">Utilice sus credenciales de la Red de Bibliotecas de Euskadi para acceder al portal.</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">

@@ -6,14 +6,14 @@
   --font-serif: "Cormorant Garamond", serif;
   --font-mono: "JetBrains Mono", monospace;
 
-  /* Refined Palette */
-  --color-primary: #1a1a1a;    /* Near Black */
-  --color-accent: #5A5A40;     /* Olive/Sage - Warm Organic */
-  --color-basque-red: #8B0000; /* Deep Crimson */
-  --color-paper: #FDFCFB;      /* Warm Off-White */
-  --color-ink: #1F2937;        /* Deep Gray for text */
-  --color-muted: #6B7280;      /* Muted Gray */
-  --color-line: rgba(0, 0, 0, 0.08);
+  /* Institutional Basque Government Palette */
+  --color-primary: #004b87;    /* Basque Institutional Blue */
+  --color-accent: #2d7a32;     /* Basque Institutional Green */
+  --color-basque-red: #da291c; /* Official Basque Red */
+  --color-paper: #f8fafc;      /* Clean Slate Background */
+  --color-ink: #1e293b;        /* Slate 800 for text */
+  --color-muted: #64748b;      /* Slate 500 */
+  --color-line: rgba(0, 75, 135, 0.1);
 }
 
 @layer base {

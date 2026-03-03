@@ -7,6 +7,7 @@ import BookDetail from './components/BookDetail';
 import Login from './components/Login';
 import Profile from './components/Profile';
 import Dashboard from './components/Dashboard';
+import LibrarianDashboard from './components/LibrarianDashboard';
 
 export default function App() {
   const [currentScreen, setCurrentScreen] = useState<Screen>('home');
@@ -49,6 +50,8 @@ export default function App() {
         return <Profile onNavigate={handleNavigate} onLogout={handleLogout} />;
       case 'dashboard':
         return <Dashboard onNavigate={handleNavigate} />;
+      case 'librarian-dashboard':
+        return <LibrarianDashboard onNavigate={handleNavigate} />;
       default:
         return <Home onNavigate={handleNavigate} />;
     }

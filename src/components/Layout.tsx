@@ -19,7 +19,8 @@ export default function Layout({ children, currentScreen, onNavigate, isLoggedIn
     { id: 'libraries', label: 'Bibliotecas', icon: Library },
     ...(isLoggedIn ? [
       { id: 'profile', label: 'Mi Cuenta', icon: User },
-      { id: 'dashboard', label: 'Gestión', icon: LayoutDashboard }
+      { id: 'dashboard', label: 'Gestión Red', icon: LayoutDashboard },
+      { id: 'librarian-dashboard', label: 'Gestión Biblioteca', icon: Library }
     ] : [])
   ];
 
@@ -35,14 +36,15 @@ export default function Layout({ children, currentScreen, onNavigate, isLoggedIn
               onClick={() => onNavigate('home')}
             >
               <div className="relative">
-                <div className="bg-primary size-12 rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+                <div className="bg-primary size-12 rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform duration-500 relative overflow-hidden">
+                  <div className="absolute top-0 left-0 w-full h-1 bg-basque-red"></div>
                   <Book className="text-white size-6" />
                 </div>
                 <div className="absolute -bottom-1 -right-1 size-4 bg-accent rounded-full border-2 border-white shadow-sm"></div>
               </div>
               <div className="flex flex-col">
                 <span className="text-xl font-serif font-bold tracking-tight text-primary leading-none">EuskalLib</span>
-                <span className="small-caps mt-1">Red de Bibliotecas</span>
+                <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-accent mt-1">Eusko Jaurlaritza</span>
               </div>
             </div>
 
@@ -144,10 +146,14 @@ export default function Layout({ children, currentScreen, onNavigate, isLoggedIn
           <div className="grid grid-cols-1 md:grid-cols-12 gap-16 mb-20">
             <div className="md:col-span-5">
               <div className="flex items-center gap-4 mb-8">
-                <div className="bg-primary size-10 rounded-lg flex items-center justify-center">
+                <div className="bg-primary size-10 rounded-lg flex items-center justify-center relative overflow-hidden">
+                  <div className="absolute top-0 left-0 w-full h-0.5 bg-basque-red"></div>
                   <Book className="text-white size-5" />
                 </div>
-                <span className="text-2xl font-serif font-bold tracking-tight text-primary">EuskalLib</span>
+                <div className="flex flex-col">
+                  <span className="text-2xl font-serif font-bold tracking-tight text-primary">EuskalLib</span>
+                  <span className="text-[8px] font-bold uppercase tracking-widest text-accent">Gobierno Vasco</span>
+                </div>
               </div>
               <p className="text-muted text-lg font-serif italic leading-relaxed max-w-md">
                 "Uniendo el patrimonio bibliográfico de Euskadi en una sola red digital. Cultura libre, accesible y universal."
@@ -175,7 +181,8 @@ export default function Layout({ children, currentScreen, onNavigate, isLoggedIn
               <h4 className="small-caps mb-8">Mi Cuenta</h4>
               <ul className="space-y-4 text-sm font-medium text-muted">
                 <li><button onClick={() => onNavigate('profile')} className="hover:text-primary transition-colors">Perfil</button></li>
-                <li><button onClick={() => onNavigate('dashboard')} className="hover:text-primary transition-colors">Gestión</button></li>
+                <li><button onClick={() => onNavigate('dashboard')} className="hover:text-primary transition-colors">Gestión Red</button></li>
+                <li><button onClick={() => onNavigate('librarian-dashboard')} className="hover:text-primary transition-colors">Gestión Biblioteca</button></li>
                 <li><button onClick={() => onNavigate('login')} className="hover:text-primary transition-colors">Acceso</button></li>
                 <li><button className="hover:text-primary transition-colors">Préstamos</button></li>
               </ul>
