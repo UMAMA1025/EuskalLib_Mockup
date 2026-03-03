@@ -1,0 +1,5 @@
+{
+  "name": "EuskalLib",
+  "description": "Red Unificada de Bibliotecas de Euskadi. Acceso universal al patrimonio bibliográfico, cultura y servicios digitales.",
+  "requestFramePermissions": ["geolocation"]
+}
