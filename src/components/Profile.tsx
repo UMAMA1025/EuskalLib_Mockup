@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
+import { User, BadgeCheck, BookOpen, History, Bell, LogOut, Shield, Mail, Phone, Fingerprint, MapPin, QrCode, RefreshCw, ChevronRight, Edit3, Library } from 'lucide-react';
 import { MOCK_BOOKS, Screen } from '../types';
 
 interface ProfileProps {
@@ -31,51 +32,50 @@ export default function Profile({ onNavigate, onLogout }: ProfileProps) {
             hidden: { x: -20, opacity: 0 },
             visible: { x: 0, opacity: 1 }
           }}
-          className="bg-white rounded-[2.5rem] p-12 shadow-2xl shadow-slate-200/50 border border-slate-100 relative overflow-hidden"
+          className="bg-white rounded-3xl p-10 shadow-sm border border-line relative overflow-hidden"
         >
-          <div className="absolute top-0 left-0 w-full h-1.5 bg-basque-red"></div>
+          <div className="absolute top-0 left-0 w-full h-1 bg-basque-red"></div>
           
           <div className="flex flex-col items-center text-center mb-12">
             <div className="relative mb-8">
-              <div className="size-40 rounded-full border-4 border-paper shadow-2xl overflow-hidden relative z-10">
+              <div className="size-32 rounded-full border-4 border-paper shadow-md overflow-hidden relative z-10">
                 <img src="https://i.pravatar.cc/400?img=32" alt="Jon Doe" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
               </div>
-              <div className="absolute -bottom-2 -right-2 size-10 bg-accent rounded-full border-4 border-white shadow-lg flex items-center justify-center text-white z-20">
-                <span className="material-symbols-outlined text-lg">verified</span>
+              <div className="absolute -bottom-1 -right-1 size-10 bg-accent rounded-full border-4 border-white shadow-sm flex items-center justify-center text-white z-20">
+                <BadgeCheck className="size-5" />
               </div>
             </div>
-            <h1 className="text-primary text-3xl font-black tracking-tighter uppercase">Jon Doe</h1>
-            <p className="text-slate-400 text-[10px] font-black uppercase tracking-[0.4em] mt-3">Miembro desde 2021</p>
+            <h1 className="text-primary text-3xl font-serif font-bold tracking-tight">Jon Doe</h1>
+            <p className="small-caps text-muted mt-2">Miembro desde 2021</p>
           </div>
           
-          <nav className="flex flex-col gap-3">
+          <nav className="flex flex-col gap-2">
             {[
-              { icon: 'person', label: 'Datos Personales', active: true },
-              { icon: 'badge', label: 'Carné de Biblioteca' },
-              { icon: 'book_2', label: 'Préstamos Activos' },
-              { icon: 'history', label: 'Historial de Préstamos' },
-              { icon: 'notifications', label: 'Notificaciones' }
+              { icon: User, label: 'Datos Personales', active: true },
+              { icon: BookOpen, label: 'Préstamos Activos' },
+              { icon: History, label: 'Historial' },
+              { icon: Bell, label: 'Notificaciones' }
             ].map((item, i) => (
               <button 
                 key={i}
-                className={`flex items-center gap-5 px-8 py-5 rounded-2xl font-black text-[10px] uppercase tracking-widest transition-all ${
+                className={`flex items-center gap-4 px-6 py-4 rounded-xl font-bold text-xs uppercase tracking-widest transition-all ${
                   item.active 
-                    ? 'bg-primary text-white shadow-xl shadow-primary/20' 
-                    : 'text-slate-500 hover:bg-slate-50 hover:text-primary'
+                    ? 'bg-primary text-white shadow-md' 
+                    : 'text-muted hover:bg-slate-50 hover:text-primary'
                 }`}
               >
-                <span className="material-symbols-outlined text-xl">{item.icon}</span>
+                <item.icon className="size-4" />
                 {item.label}
               </button>
             ))}
           </nav>
           
-          <div className="mt-12 pt-10 border-t border-slate-100">
+          <div className="mt-10 pt-8 border-t border-line">
             <button 
               onClick={onLogout}
-              className="flex w-full items-center justify-center gap-4 rounded-2xl h-16 bg-red-50 text-basque-red text-[10px] font-black uppercase tracking-widest hover:bg-red-100 transition-all border border-red-100"
+              className="flex w-full items-center justify-center gap-3 rounded-xl py-4 bg-red-50 text-basque-red text-xs font-bold uppercase tracking-widest hover:bg-red-100 transition-all border border-red-100"
             >
-              <span className="material-symbols-outlined text-lg">logout</span>
+              <LogOut className="size-4" />
               Cerrar Sesión
             </button>
           </div>
@@ -87,20 +87,20 @@ export default function Profile({ onNavigate, onLogout }: ProfileProps) {
             hidden: { x: -20, opacity: 0 },
             visible: { x: 0, opacity: 1 }
           }}
-          className="bg-primary rounded-[2rem] p-10 text-white relative overflow-hidden"
+          className="bg-primary rounded-3xl p-8 text-white relative overflow-hidden group"
         >
-          <div className="absolute top-0 right-0 w-24 h-1 bg-basque-red"></div>
+          <div className="absolute top-0 right-0 w-24 h-px bg-basque-red"></div>
           <div className="relative z-10">
             <div className="flex items-center gap-3 mb-6">
-              <span className="size-2 bg-accent rounded-full animate-pulse"></span>
-              <span className="text-[9px] font-black uppercase tracking-[0.3em] text-white/50">Estado del Servicio</span>
+              <div className="size-2 bg-accent rounded-full animate-pulse"></div>
+              <span className="small-caps text-white/40">Estado del Servicio</span>
             </div>
-            <p className="text-sm font-medium leading-relaxed mb-8">
-              Todos los sistemas de la Red de Bibliotecas operan con normalidad.
+            <p className="text-sm font-light leading-relaxed mb-8 text-white/80">
+              Todos los sistemas de la Red de Bibliotecas operan con normalidad institucional.
             </p>
-            <div className="flex justify-between items-center text-[10px] font-black uppercase tracking-widest">
-              <span>Sincronizado</span>
-              <span className="font-mono text-accent">OK</span>
+            <div className="flex justify-between items-center small-caps text-[10px]">
+              <span className="text-white/40">Sincronizado</span>
+              <span className="text-accent">OK</span>
             </div>
           </div>
         </motion.div>
@@ -118,35 +118,35 @@ export default function Profile({ onNavigate, onLogout }: ProfileProps) {
         >
           <div className="max-w-xl">
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-8 h-1 bg-basque-red"></div>
-              <span className="text-accent font-black tracking-[0.4em] uppercase text-[10px] block">Perfil Institucional Unificado</span>
+              <div className="h-px w-8 bg-basque-red"></div>
+              <span className="small-caps text-accent">Perfil Institucional Unificado</span>
             </div>
-            <h2 className="text-5xl font-black text-primary tracking-tighter uppercase leading-none">Datos <br /> <span className="font-serif italic font-normal text-basque-red lowercase tracking-normal">Personales.</span></h2>
-            <p className="text-slate-600 mt-6 text-lg font-medium leading-relaxed">Gestione su identidad digital y preferencias de acceso a la Red de Bibliotecas de Euskadi.</p>
+            <h2 className="text-5xl font-serif font-bold text-primary tracking-tight leading-none">Datos <br /> <span className="italic font-medium text-basque-red">Personales.</span></h2>
+            <p className="text-muted mt-6 text-lg font-light leading-relaxed">Gestione su identidad digital y preferencias de acceso a la Red de Bibliotecas de Euskadi.</p>
           </div>
-          <button className="flex items-center gap-4 rounded-full h-16 px-10 bg-primary text-white text-[10px] font-black uppercase tracking-widest shadow-2xl shadow-primary/30 hover:bg-slate-900 transition-all group">
-            <span className="material-symbols-outlined text-lg">edit</span>
+          <button className="btn-premium btn-primary py-4 px-10">
+            <Edit3 className="size-4" />
             Editar Perfil
           </button>
         </motion.div>
 
-        {/* Profile Info Cards - Specialist Tool Look */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+        {/* Profile Info Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {[
             { 
               title: 'Detalles de Contacto', 
               accent: 'bg-basque-red',
               items: [
-                { icon: 'mail', label: 'Correo Electrónico', value: 'jon.doe@euskallib.eus' },
-                { icon: 'phone', label: 'Número de Teléfono', value: '+34 944 123 456' }
+                { icon: Mail, label: 'Correo Electrónico', value: 'jon.doe@euskallib.eus' },
+                { icon: Phone, label: 'Número de Teléfono', value: '+34 944 123 456' }
               ]
             },
             { 
               title: 'Información Institucional', 
               accent: 'bg-accent',
               items: [
-                { icon: 'fingerprint', label: 'ID de Miembro', value: 'EL-98321-BASQUE', mono: true },
-                { icon: 'location_on', label: 'Biblioteca Principal', value: 'Bilbao Central Library' }
+                { icon: Fingerprint, label: 'ID de Miembro', value: 'EL-98321-BASQUE', mono: true },
+                { icon: MapPin, label: 'Biblioteca Principal', value: 'Bilbao Central Library' }
               ]
             }
           ].map((card, i) => (
@@ -156,19 +156,19 @@ export default function Profile({ onNavigate, onLogout }: ProfileProps) {
                 hidden: { y: 20, opacity: 0 },
                 visible: { y: 0, opacity: 1 }
               }}
-              className="bg-white p-10 rounded-[2.5rem] border border-slate-200 shadow-sm relative overflow-hidden group hover:border-primary transition-colors"
+              className="bg-white p-10 rounded-3xl border border-line shadow-sm relative overflow-hidden group hover:border-accent transition-colors"
             >
-              <div className={`absolute top-0 right-0 w-24 h-1 ${card.accent}`}></div>
-              <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] mb-10">{card.title}</h3>
-              <div className="space-y-10">
+              <div className={`absolute top-0 right-0 w-24 h-px ${card.accent}`}></div>
+              <h3 className="small-caps text-muted mb-10">{card.title}</h3>
+              <div className="space-y-8">
                 {card.items.map((item, j) => (
                   <div key={j} className="flex items-start gap-6">
-                    <div className="size-14 rounded-2xl border border-dashed border-slate-200 flex items-center justify-center text-slate-300 group-hover:border-primary group-hover:text-primary transition-colors">
-                      <span className="material-symbols-outlined">{item.icon}</span>
+                    <div className="size-12 rounded-xl border border-line flex items-center justify-center text-muted group-hover:bg-slate-50 transition-colors">
+                      <item.icon className="size-5" />
                     </div>
                     <div>
-                      <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-2">{item.label}</p>
-                      <p className={`font-black text-primary text-lg ${item.mono ? 'font-mono uppercase' : ''}`}>{item.value}</p>
+                      <p className="small-caps text-[9px] mb-1">{item.label}</p>
+                      <p className={`font-bold text-primary text-lg ${item.mono ? 'font-mono' : 'font-serif'}`}>{item.value}</p>
                     </div>
                   </div>
                 ))}
@@ -185,57 +185,49 @@ export default function Profile({ onNavigate, onLogout }: ProfileProps) {
           }}
         >
           <div className="flex items-center gap-3 mb-10">
-            <div className="w-6 h-0.5 bg-basque-red"></div>
-            <h3 className="text-[10px] font-black text-slate-800 uppercase tracking-[0.4em]">Carné Universal</h3>
+            <div className="h-px w-6 bg-basque-red"></div>
+            <h3 className="small-caps text-primary">Carné Universal</h3>
           </div>
           
-          <div className="relative w-full max-w-xl aspect-[1.6/1] bg-primary rounded-[3rem] p-12 overflow-hidden shadow-[0_40px_80px_-20px_rgba(0,51,102,0.4)] group">
-            {/* Premium Textures */}
+          <div className="relative w-full max-w-xl aspect-[1.6/1] bg-primary rounded-[2.5rem] p-10 overflow-hidden shadow-2xl group">
             <div className="absolute inset-0 opacity-10 pointer-events-none">
               <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,#fff_0%,transparent_70%)]"></div>
             </div>
-            <div className="absolute top-0 right-0 w-96 h-96 bg-accent/20 rounded-full -mr-32 -mt-32 blur-3xl"></div>
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-basque-red/10 rounded-full -ml-20 -mb-20 blur-3xl"></div>
+            <div className="absolute top-0 right-0 w-96 h-96 bg-accent/10 rounded-full -mr-32 -mt-32 blur-3xl"></div>
             
             <div className="relative h-full flex flex-col justify-between">
               <div className="flex justify-between items-start">
-                <div className="flex items-center gap-5">
-                  <div className="bg-white/10 backdrop-blur-xl p-3 rounded-2xl border border-white/20">
-                    <span className="material-symbols-outlined text-white text-3xl">account_balance</span>
+                <div className="flex items-center gap-4">
+                  <div className="bg-white/10 backdrop-blur-md p-3 rounded-xl border border-white/10">
+                    <Library className="text-white size-6" />
                   </div>
                   <div className="flex flex-col">
-                    <span className="text-white font-black tracking-tighter text-2xl uppercase">EuskalLib</span>
-                    <span className="text-[8px] text-white/50 font-black uppercase tracking-[0.3em]">Red de Bibliotecas</span>
+                    <span className="text-white font-serif font-bold text-xl">EuskalLib</span>
+                    <span className="text-[8px] text-white/40 font-bold uppercase tracking-widest">Red de Bibliotecas</span>
                   </div>
                 </div>
-                <div className="flex flex-col items-end">
-                  <span className="material-symbols-outlined text-white/20 text-5xl">contactless</span>
-                  <div className="mt-2 flex gap-1">
-                    <div className="size-1.5 bg-basque-red rounded-full"></div>
-                    <div className="size-1.5 bg-accent rounded-full"></div>
-                  </div>
-                </div>
+                <Shield className="text-white/10 size-12" />
               </div>
               
-              <div className="space-y-2">
-                <p className="text-white/40 text-[9px] uppercase tracking-[0.4em] font-black">Titular del Carné</p>
-                <h4 className="text-white text-4xl font-black tracking-tighter uppercase">JON DOE</h4>
+              <div className="space-y-1">
+                <p className="text-white/30 text-[9px] uppercase tracking-widest font-bold">Titular del Carné</p>
+                <h4 className="text-white text-3xl font-serif font-bold tracking-tight uppercase">JON DOE</h4>
               </div>
               
               <div className="flex justify-between items-end">
-                <div className="bg-white p-4 rounded-2xl shadow-2xl border border-white/50">
-                  <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=EL-98321-BASQUE" alt="QR" className="size-20 mix-blend-multiply" referrerPolicy="no-referrer" />
+                <div className="bg-white p-3 rounded-xl shadow-lg">
+                  <QrCode className="size-16 text-primary" />
                 </div>
                 <div className="text-right">
-                  <p className="text-white/40 text-[9px] uppercase tracking-[0.4em] font-black mb-2">Número de Identificación</p>
-                  <p className="text-white font-mono text-2xl font-bold tracking-widest">EL 9832 1000</p>
+                  <p className="text-white/30 text-[9px] uppercase tracking-widest font-bold mb-1">ID Unificado</p>
+                  <p className="text-white font-mono text-xl font-bold tracking-widest">EL 9832 1000</p>
                 </div>
               </div>
             </div>
           </div>
         </motion.div>
 
-        {/* Active Loans Table - Technical Dashboard Look */}
+        {/* Active Loans Table */}
         <motion.div
           variants={{
             hidden: { y: 20, opacity: 0 },
@@ -244,56 +236,57 @@ export default function Profile({ onNavigate, onLogout }: ProfileProps) {
         >
           <div className="flex items-center justify-between mb-10">
             <div className="flex items-center gap-3">
-              <div className="w-6 h-0.5 bg-basque-red"></div>
-              <h3 className="text-[10px] font-black text-slate-800 uppercase tracking-[0.4em]">Préstamos Activos</h3>
+              <div className="h-px w-6 bg-basque-red"></div>
+              <h3 className="small-caps text-primary">Préstamos Activos</h3>
             </div>
-            <button className="text-accent text-[10px] font-black uppercase tracking-widest hover:underline flex items-center gap-2">
-              Ver Historial Completo
-              <span className="material-symbols-outlined text-sm">arrow_forward</span>
+            <button className="text-accent text-[10px] font-bold uppercase tracking-widest hover:underline flex items-center gap-2 group">
+              Ver historial completo
+              <ChevronRight className="size-3 group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
           
-          <div className="bg-white rounded-[2.5rem] border border-slate-200 shadow-sm overflow-hidden">
+          <div className="bg-white rounded-3xl border border-line shadow-sm overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full text-left border-collapse">
                 <thead>
-                  <tr className="bg-slate-50/50 border-b border-slate-100">
-                    <th className="px-10 py-6 text-[9px] font-black text-slate-400 uppercase tracking-[0.3em]">Título del Recurso</th>
-                    <th className="px-10 py-6 text-[9px] font-black text-slate-400 uppercase tracking-[0.3em]">Vencimiento</th>
-                    <th className="px-10 py-6 text-[9px] font-black text-slate-400 uppercase tracking-[0.3em]">Estado</th>
-                    <th className="px-10 py-6 text-[9px] font-black text-slate-400 uppercase tracking-[0.3em] text-right">Acción</th>
+                  <tr className="bg-slate-50/50 border-b border-line">
+                    <th className="px-10 py-6 small-caps text-[9px]">Recurso</th>
+                    <th className="px-10 py-6 small-caps text-[9px]">Vencimiento</th>
+                    <th className="px-10 py-6 small-caps text-[9px]">Estado</th>
+                    <th className="px-10 py-6 small-caps text-[9px] text-right">Acción</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-50">
+                <tbody className="divide-y divide-line/50">
                   {MOCK_BOOKS.slice(0, 2).map((book, i) => (
                     <tr key={i} className="hover:bg-slate-50/50 transition-colors group">
                       <td className="px-10 py-8">
-                        <div className="flex items-center gap-8">
-                          <div className="w-16 h-24 bg-white rounded-xl flex-shrink-0 overflow-hidden shadow-xl border border-slate-100 group-hover:scale-105 transition-transform duration-500">
+                        <div className="flex items-center gap-6">
+                          <div className="w-14 h-20 rounded-lg overflow-hidden shadow-md border border-line shrink-0 group-hover:scale-105 transition-transform duration-500">
                             <img src={book.cover} alt={book.title} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
                           </div>
                           <div>
-                            <p className="font-black text-primary text-lg tracking-tight mb-1 group-hover:text-accent transition-colors">{book.title}</p>
-                            <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">{book.author}</p>
+                            <p className="font-serif font-bold text-primary text-lg leading-tight mb-1 group-hover:text-accent transition-colors">{book.title}</p>
+                            <p className="text-[10px] font-medium text-muted uppercase tracking-widest">{book.author}</p>
                           </div>
                         </div>
                       </td>
                       <td className="px-10 py-8">
                         <div className="flex flex-col">
-                          <span className="text-sm font-black text-slate-700">24 Oct, 2024</span>
-                          <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest mt-1">14:00 GMT</span>
+                          <span className="text-sm font-bold text-primary">24 Oct, 2024</span>
+                          <span className="text-[9px] font-medium text-muted uppercase tracking-widest mt-0.5">14:00 GMT</span>
                         </div>
                       </td>
                       <td className="px-10 py-8">
-                        <div className="flex items-center gap-3">
-                          <span className={`size-2 rounded-full ${i === 0 ? 'bg-accent animate-pulse' : 'bg-amber-500'}`}></span>
-                          <span className={`text-[10px] font-black uppercase tracking-widest ${i === 0 ? 'text-accent' : 'text-amber-600'}`}>
+                        <div className="flex items-center gap-2">
+                          <div className={`size-1.5 rounded-full ${i === 0 ? 'bg-accent animate-pulse' : 'bg-amber-500'}`}></div>
+                          <span className={`text-[10px] font-bold uppercase tracking-widest ${i === 0 ? 'text-accent' : 'text-amber-600'}`}>
                             {i === 0 ? 'En Plazo' : 'Vencimiento Próximo'}
                           </span>
                         </div>
                       </td>
                       <td className="px-10 py-8 text-right">
-                        <button className="px-6 py-3 rounded-xl border border-slate-200 text-[10px] font-black uppercase tracking-widest text-primary hover:bg-primary hover:text-white hover:border-primary transition-all">
+                        <button className="px-5 py-2.5 rounded-xl border border-line text-[10px] font-bold uppercase tracking-widest text-primary hover:bg-primary hover:text-white hover:border-primary transition-all">
+                          <RefreshCw className="size-3 inline-block mr-2" />
                           Renovar
                         </button>
                       </td>
@@ -302,8 +295,8 @@ export default function Profile({ onNavigate, onLogout }: ProfileProps) {
                 </tbody>
               </table>
             </div>
-            <div className="p-8 bg-slate-50/50 border-t border-slate-100 text-center">
-              <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">
+            <div className="p-6 bg-slate-50/50 border-t border-line text-center">
+              <p className="small-caps text-[9px]">
                 Mostrando 2 de 12 préstamos activos en la Red de Euskadi
               </p>
             </div>

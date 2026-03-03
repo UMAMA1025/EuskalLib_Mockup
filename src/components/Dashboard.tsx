@@ -1,6 +1,12 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { MOCK_BOOKS, Screen } from '../types';
+import { 
+  Users, BookOpen, Clock, TrendingUp, 
+  ArrowUpRight, ArrowDownRight, Search, 
+  Filter, Download, Calendar, Activity,
+  Library, Globe, ShieldCheck, ChevronRight
+} from 'lucide-react';
+import { Screen } from '../types';
 
 interface DashboardProps {
   onNavigate: (screen: Screen) => void;
@@ -11,200 +17,204 @@ export default function Dashboard({ onNavigate }: DashboardProps) {
     <motion.div 
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="min-h-screen bg-paper"
+      className="max-w-7xl mx-auto px-6 lg:px-12 py-20"
     >
-      {/* Dashboard Header - Technical */}
-      <section className="bg-white border-b border-slate-200 pt-32 pb-12">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <div className="flex flex-col md:flex-row justify-between items-end gap-8">
-            <div>
-              <div className="flex items-center gap-3 mb-4">
-                <span className="size-2 bg-accent rounded-full animate-pulse"></span>
-                <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em]">Sistema de Gestión Centralizado</span>
+      {/* Header - Professional Dashboard */}
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-10 mb-20">
+        <div className="max-w-xl">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="h-px w-8 bg-basque-red"></div>
+            <span className="small-caps text-accent">Panel de Control Institucional</span>
+          </div>
+          <h2 className="text-5xl font-serif font-bold text-primary tracking-tight leading-none">Análisis de <br /> <span className="italic font-medium text-basque-red">Actividad.</span></h2>
+          <p className="text-muted mt-6 text-lg font-light leading-relaxed">Monitorización en tiempo real de los flujos culturales y bibliográficos de la Red de Euskadi.</p>
+        </div>
+        
+        <div className="flex items-center gap-4">
+          <button className="btn-premium btn-outline py-3 px-6">
+            <Download className="size-4" />
+            Exportar Reporte
+          </button>
+          <button className="btn-premium btn-primary py-3 px-6">
+            <Calendar className="size-4" />
+            Últimos 30 días
+          </button>
+        </div>
+      </div>
+
+      {/* Stats Grid - Hardware/Specialist Feel */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
+        {[
+          { label: 'Usuarios Activos', value: '12,842', change: '+12%', trend: 'up', icon: Users },
+          { label: 'Préstamos Totales', value: '45,201', change: '+5%', trend: 'up', icon: BookOpen },
+          { label: 'Tiempo Medio', value: '18.5m', change: '-2%', trend: 'down', icon: Clock },
+          { label: 'Tasa de Retorno', value: '94.2%', change: '+0.8%', trend: 'up', icon: TrendingUp }
+        ].map((stat, i) => (
+          <motion.div 
+            key={i} 
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: i * 0.1 }}
+            className="bg-primary rounded-3xl p-8 text-white relative overflow-hidden group"
+          >
+            <div className="absolute top-0 right-0 w-16 h-px bg-basque-red"></div>
+            <div className="relative z-10">
+              <div className="flex justify-between items-start mb-8">
+                <div className="size-12 rounded-xl bg-white/10 flex items-center justify-center text-white/60 group-hover:text-accent transition-colors">
+                  <stat.icon className="size-6" />
+                </div>
+                <div className={`flex items-center gap-1 text-[10px] font-bold uppercase tracking-widest ${stat.trend === 'up' ? 'text-accent' : 'text-red-400'}`}>
+                  {stat.trend === 'up' ? <ArrowUpRight className="size-3" /> : <ArrowDownRight className="size-3" />}
+                  {stat.change}
+                </div>
               </div>
-              <h1 className="text-5xl font-black text-primary tracking-tighter">
-                PANEL <span className="font-serif italic font-normal">Administrativo.</span>
-              </h1>
+              <p className="small-caps text-white/40 mb-2">{stat.label}</p>
+              <h3 className="text-4xl font-serif font-bold tracking-tight">{stat.value}</h3>
             </div>
-            
-            <div className="flex gap-4">
-              <button className="px-8 py-4 bg-slate-100 rounded-2xl text-[10px] font-black text-slate-500 uppercase tracking-widest hover:bg-slate-200 transition-all">
-                Configuración
-              </button>
-              <button className="px-8 py-4 bg-primary text-white rounded-2xl text-[10px] font-black uppercase tracking-widest shadow-xl shadow-primary/20 hover:scale-105 transition-all">
-                Nuevo Registro
+            {/* Decorative Grid Background */}
+            <div className="absolute inset-0 opacity-5 pointer-events-none">
+              <div className="w-full h-full bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+
+      {/* Main Grid - Data Grid Aesthetic */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        {/* Activity Table */}
+        <div className="lg:col-span-8">
+          <div className="flex items-center justify-between mb-10">
+            <div className="flex items-center gap-3">
+              <div className="h-px w-6 bg-basque-red"></div>
+              <h3 className="small-caps text-primary">Actividad Reciente</h3>
+            </div>
+            <div className="flex items-center gap-4">
+              <div className="relative">
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 size-4 text-muted" />
+                <input 
+                  type="text" 
+                  placeholder="Filtrar actividad..." 
+                  className="pl-10 pr-4 py-2 bg-slate-50 border border-line rounded-xl text-xs font-medium focus:ring-4 focus:ring-primary/5 transition-all w-64"
+                />
+              </div>
+              <button className="p-2 bg-slate-50 border border-line rounded-xl text-muted hover:text-primary transition-colors">
+                <Filter className="size-4" />
               </button>
             </div>
+          </div>
+
+          <div className="bg-white rounded-3xl border border-line shadow-sm overflow-hidden">
+            <div className="overflow-x-auto">
+              <table className="w-full text-left border-collapse">
+                <thead>
+                  <tr className="bg-slate-50/50 border-b border-line">
+                    <th className="px-8 py-6 small-caps text-[9px]">Usuario</th>
+                    <th className="px-8 py-6 small-caps text-[9px]">Acción</th>
+                    <th className="px-8 py-6 small-caps text-[9px]">Recurso</th>
+                    <th className="px-8 py-6 small-caps text-[9px] text-right">Hora</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-line/50">
+                  {[
+                    { user: 'Mikel Artetxe', action: 'Préstamo', book: 'Obabakoak', time: 'Hace 2m', status: 'success' },
+                    { user: 'Ane Garmendia', action: 'Reserva', book: 'Patria', time: 'Hace 5m', status: 'warning' },
+                    { user: 'Jon Rahm', action: 'Devolución', book: 'El hijo del acordeonista', time: 'Hace 12m', status: 'info' },
+                    { user: 'Maite Zubiri', action: 'Préstamo', book: 'Martutene', time: 'Hace 15m', status: 'success' },
+                    { user: 'Iker Casillas', action: 'Renovación', book: 'Cien años de soledad', time: 'Hace 22m', status: 'info' }
+                  ].map((row, i) => (
+                    <tr key={i} className="hover:bg-slate-50/50 transition-colors group">
+                      <td className="px-8 py-6">
+                        <div className="flex items-center gap-4">
+                          <div className="size-8 rounded-full bg-slate-100 flex items-center justify-center text-[10px] font-bold text-primary">
+                            {row.user.split(' ').map(n => n[0]).join('')}
+                          </div>
+                          <span className="text-sm font-bold text-primary">{row.user}</span>
+                        </div>
+                      </td>
+                      <td className="px-8 py-6">
+                        <span className={`px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-widest ${
+                          row.status === 'success' ? 'bg-accent/10 text-accent' : 
+                          row.status === 'warning' ? 'bg-amber-50 text-amber-600' : 
+                          'bg-blue-50 text-blue-600'
+                        }`}>
+                          {row.action}
+                        </span>
+                      </td>
+                      <td className="px-8 py-6">
+                        <span className="text-sm font-medium text-muted italic font-serif">{row.book}</span>
+                      </td>
+                      <td className="px-8 py-6 text-right">
+                        <span className="text-[10px] font-bold text-muted uppercase tracking-widest">{row.time}</span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <button className="w-full py-6 bg-slate-50/50 border-t border-line text-[10px] font-bold uppercase tracking-widest text-primary hover:bg-slate-100 transition-colors flex items-center justify-center gap-2 group">
+              Ver registro de auditoría completo
+              <ChevronRight className="size-3 group-hover:translate-x-1 transition-transform" />
+            </button>
           </div>
         </div>
-      </section>
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 py-16">
-        {/* Stats Grid - Technical/Mono with Hardware feel */}
-        <motion.div 
-          initial="hidden"
-          animate="visible"
-          variants={{
-            hidden: { opacity: 0 },
-            visible: {
-              opacity: 1,
-              transition: {
-                staggerChildren: 0.1
-              }
-            }
-          }}
-          className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-16"
-        >
-          {[
-            { label: 'Préstamos Activos', value: '12,482', trend: '+12.4%', icon: 'book_2' },
-            { label: 'Usuarios Registrados', value: '84,201', trend: '+5.2%', icon: 'group' },
-            { label: 'Títulos en Red', value: '5.2M', trend: '+0.8%', icon: 'database' },
-            { label: 'Nodos Activos', value: '254', trend: 'Estable', icon: 'lan' }
-          ].map((stat, i) => (
-            <motion.div 
-              key={i} 
-              variants={{
-                hidden: { y: 20, opacity: 0 },
-                visible: { y: 0, opacity: 1 }
-              }}
-              className="bg-white p-10 rounded-[2rem] border border-slate-200 shadow-sm group hover:border-accent transition-all relative overflow-hidden"
-            >
-              <div className="absolute top-0 right-0 p-4">
-                <div className="size-12 rounded-full border border-dashed border-slate-200 flex items-center justify-center group-hover:border-accent transition-colors">
-                  <span className="material-symbols-outlined text-slate-300 group-hover:text-accent transition-colors text-xl">{stat.icon}</span>
+        {/* Sidebar Widgets */}
+        <div className="lg:col-span-4 flex flex-col gap-10">
+          {/* Real-time Monitor */}
+          <div className="bg-white rounded-3xl p-8 border border-line shadow-sm relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-16 h-px bg-basque-red"></div>
+            <div className="flex items-center gap-3 mb-8">
+              <Activity className="size-5 text-accent" />
+              <h3 className="small-caps text-primary">Monitor de Red</h3>
+            </div>
+            <div className="space-y-6">
+              {[
+                { label: 'KMK Donostia', load: 85, status: 'Alta' },
+                { label: 'Bidebarrieta Bilbao', load: 62, status: 'Media' },
+                { label: 'Aldecoa Vitoria', load: 44, status: 'Normal' }
+              ].map((node, i) => (
+                <div key={i} className="space-y-2">
+                  <div className="flex justify-between items-center text-[10px] font-bold uppercase tracking-widest">
+                    <span className="text-primary">{node.label}</span>
+                    <span className="text-muted">{node.status}</span>
+                  </div>
+                  <div className="h-1.5 w-full bg-slate-100 rounded-full overflow-hidden">
+                    <motion.div 
+                      initial={{ width: 0 }}
+                      animate={{ width: `${node.load}%` }}
+                      className={`h-full ${node.load > 80 ? 'bg-basque-red' : node.load > 50 ? 'bg-amber-500' : 'bg-accent'}`}
+                    ></motion.div>
+                  </div>
                 </div>
-              </div>
-              <div className="flex flex-col">
-                <span className="font-mono text-[10px] text-emerald-600 font-bold mb-6 flex items-center gap-2">
-                  <span className="size-1 bg-emerald-500 rounded-full"></span>
-                  {stat.trend}
-                </span>
-                <p className="text-5xl font-black text-primary tracking-tighter mb-2 font-mono">{stat.value}</p>
-                <p className="text-[9px] font-black text-slate-400 uppercase tracking-[0.4em]">{stat.label}</p>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
-          {/* Main Table - Professional Data Grid */}
-          <div className="lg:col-span-8">
-            <div className="bg-white rounded-[2.5rem] border border-slate-200 overflow-hidden shadow-sm">
-              <div className="px-10 py-8 border-b border-slate-100 flex justify-between items-center bg-slate-50/50 relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-24 h-1 bg-basque-red"></div>
-                <h3 className="text-xs font-black text-primary uppercase tracking-widest">Actividad de Red en Tiempo Real</h3>
-                <div className="flex gap-4">
-                  <div className="size-2 bg-emerald-500 rounded-full animate-pulse"></div>
-                  <div className="size-2 bg-slate-200 rounded-full"></div>
-                  <div className="size-2 bg-slate-200 rounded-full"></div>
-                </div>
-              </div>
-              
-              <div className="overflow-x-auto">
-                <table className="w-full text-left border-collapse">
-                  <thead>
-                    <tr className="border-b border-slate-100">
-                      <th className="px-10 py-6 text-[9px] font-black text-slate-500 uppercase tracking-widest">ID Transacción</th>
-                      <th className="px-10 py-6 text-[9px] font-black text-slate-500 uppercase tracking-widest">Usuario</th>
-                      <th className="px-10 py-6 text-[9px] font-black text-slate-500 uppercase tracking-widest">Acción</th>
-                      <th className="px-10 py-6 text-[9px] font-black text-slate-500 uppercase tracking-widest">Estado</th>
-                    </tr>
-                  </thead>
-                  <motion.tbody 
-                    initial="hidden"
-                    animate="visible"
-                    variants={{
-                      hidden: { opacity: 0 },
-                      visible: {
-                        opacity: 1,
-                        transition: {
-                          staggerChildren: 0.05
-                        }
-                      }
-                    }}
-                    className="divide-y divide-slate-50"
-                  >
-                    {[
-                      { id: 'TX-9402', user: 'Mikel Arregi', action: 'Préstamo Digital', status: 'Completado' },
-                      { id: 'TX-9401', user: 'Ane Garmendia', action: 'Reserva Física', status: 'Pendiente' },
-                      { id: 'TX-9400', user: 'Iñigo Lopez', action: 'Renovación', status: 'Completado' },
-                      { id: 'TX-9399', user: 'Maite Ortiz', action: 'Alta Usuario', status: 'Verificando' },
-                      { id: 'TX-9398', user: 'Xabier Etxeberria', action: 'Devolución', status: 'Completado' }
-                    ].map((row, i) => (
-                      <motion.tr 
-                        key={i} 
-                        variants={{
-                          hidden: { x: -10, opacity: 0 },
-                          visible: { x: 0, opacity: 1 }
-                        }}
-                        className="hover:bg-slate-50 transition-colors group"
-                      >
-                        <td className="px-10 py-6 font-mono text-[10px] text-slate-500">{row.id}</td>
-                        <td className="px-10 py-6">
-                          <span className="text-sm font-bold text-primary">{row.user}</span>
-                        </td>
-                        <td className="px-10 py-6">
-                          <span className="text-xs font-medium text-slate-700">{row.action}</span>
-                        </td>
-                        <td className="px-10 py-6">
-                          <div className="flex items-center gap-3">
-                            <span className={`size-1.5 rounded-full ${row.status === 'Completado' ? 'bg-accent' : row.status === 'Pendiente' ? 'bg-amber-500' : 'bg-slate-300'}`}></span>
-                            <span className="text-[10px] font-black uppercase tracking-widest text-slate-600">{row.status}</span>
-                          </div>
-                        </td>
-                      </motion.tr>
-                    ))}
-                  </motion.tbody>
-                </table>
-              </div>
-              
-              <div className="p-8 bg-slate-50/50 border-t border-slate-100 text-center">
-                <button className="text-[10px] font-black text-accent uppercase tracking-widest hover:underline">Descargar Reporte Completo (CSV)</button>
-              </div>
+              ))}
             </div>
           </div>
 
-          {/* Sidebar - System Health */}
-          <div className="lg:col-span-4 space-y-12">
-            <div>
-              <h3 className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-800 mb-8">Estado de Nodos</h3>
-              <div className="space-y-6">
-                {[
-                  { name: 'Nodo Bilbao (Bidebarrieta)', load: 42, status: 'Óptimo' },
-                  { name: 'Nodo Donostia (KMK)', load: 78, status: 'Carga Alta' },
-                  { name: 'Nodo Vitoria (Aldecoa)', load: 15, status: 'Óptimo' }
-                ].map((node, i) => (
-                  <div key={i} className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm relative overflow-hidden">
-                    <div className="absolute top-0 right-0 w-16 h-1 bg-slate-100 group-hover:bg-primary transition-colors"></div>
-                    <div className="flex justify-between items-center mb-6">
-                      <p className="text-xs font-black text-primary">{node.name}</p>
-                      <span className={`text-[9px] font-black uppercase tracking-widest ${node.status === 'Óptimo' ? 'text-accent' : 'text-amber-500'}`}>{node.status}</span>
-                    </div>
-                    <div className="h-1.5 w-full bg-slate-100 rounded-full overflow-hidden">
-                      <div 
-                        className={`h-full rounded-full transition-all duration-1000 ${node.load > 70 ? 'bg-amber-500' : 'bg-accent'}`}
-                        style={{ width: `${node.load}%` }}
-                      ></div>
-                    </div>
-                    <div className="mt-4 flex justify-between items-center">
-                      <p className="text-[9px] font-black text-slate-500 uppercase tracking-widest">Carga de Servidor</p>
-                      <p className="font-mono text-[10px] font-bold text-slate-600">{node.load}%</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
+          {/* System Integrity */}
+          <div className="bg-primary rounded-3xl p-8 text-white relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-16 h-px bg-basque-red"></div>
+            <div className="flex items-center gap-3 mb-6">
+              <ShieldCheck className="size-5 text-accent" />
+              <span className="small-caps text-white/40">Integridad del Sistema</span>
             </div>
-
-            <div className="bg-primary rounded-[2.5rem] p-10 text-white overflow-hidden relative">
-              <div className="absolute top-0 right-0 w-24 h-1 bg-basque-red"></div>
-              <div className="absolute top-0 right-0 w-32 h-32 bg-accent/20 rounded-full -mr-16 -mt-16 blur-3xl"></div>
-              <h4 className="text-xl font-black mb-4 relative z-10">Alertas Críticas</h4>
-              <p className="text-white/80 text-sm mb-8 relative z-10 leading-relaxed">
-                No se han detectado anomalías en las últimas 24 horas. El sistema opera bajo parámetros normales de la Red de Euskadi.
-              </p>
-              <button className="w-full py-4 bg-accent text-white rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-emerald-600 transition-all relative z-10">
-                Ver Log de Seguridad
-              </button>
+            <p className="text-sm font-light leading-relaxed mb-8 text-white/80">
+              Protocolos de seguridad activos. Sincronización con el repositorio central de Euskadi completada.
+            </p>
+            <div className="flex flex-col gap-4">
+              <div className="flex justify-between items-center p-4 bg-white/5 rounded-2xl border border-white/10">
+                <div className="flex items-center gap-3">
+                  <Globe className="size-4 text-white/40" />
+                  <span className="text-[10px] font-bold uppercase tracking-widest">Nodos Globales</span>
+                </div>
+                <span className="text-accent font-mono text-xs">ONLINE</span>
+              </div>
+              <div className="flex justify-between items-center p-4 bg-white/5 rounded-2xl border border-white/10">
+                <div className="flex items-center gap-3">
+                  <Library className="size-4 text-white/40" />
+                  <span className="text-[10px] font-bold uppercase tracking-widest">Bases de Datos</span>
+                </div>
+                <span className="text-accent font-mono text-xs">SYNCED</span>
+              </div>
             </div>
           </div>
         </div>
